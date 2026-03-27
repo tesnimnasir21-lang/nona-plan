@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nona Plan - Study Planner</title>
+<link rel="stylesheet" href="planner.css">
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">
+    <img src="logo.png" alt="Nona Plan Logo">
+    <span>Nona Plan</span>
+  </div>
+
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="planner.html" class="active">Planner</a></li>
+    <li><a href="analytics.html">Analytics</a></li>
+    <li><a href="resources.html">Resources</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+  <h1>📅 Study Planner</h1>
+
+  <!-- BUILT-IN WEEKLY PLAN -->
+  <section>
+    <h2>Weekly Plan (Built-in)</h2>
+    <table id="builtInTable">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Subject / Task</th>
+          <th>Resource</th>
+          <th>Duration</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Filled by JS -->
+      </tbody>
+    </table>
+  </section>
+
+  <!-- USER-DEFINED PLAN -->
+  <section>
+    <h2>Your Custom Plan</h2>
+    <div class="custom-form">
+      <input type="date" id="customDate" placeholder="Date">
+      <input type="text" id="customSubject" placeholder="Subject / Task">
+      <input type="text" id="customResource" placeholder="Resource link or description">
+      <input type="text" id="customDuration" placeholder="Duration (minutes)">
+      <button class="btn" onclick="addCustomTask()">Add Task</button>
+    </div>
+    <table id="customTable">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Subject / Task</th>
+          <th>Resource</th>
+          <th>Duration</th>
+          <th>Status</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- User tasks added here -->
+      </tbody>
+    </table>
+  </section>
+
+</div>
+
+<script src="planner.js"></script>
+</body>
+</html>
