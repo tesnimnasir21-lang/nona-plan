@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nona Plan - Analytics</title>
+
+<style>
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* BACKGROUND */
+body {
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+}
+
+/* OVERLAY */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.35);
+    z-index: -1;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+}
+
+nav .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+nav .logo img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffd700;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #ffd700;
+}
+
+/* HEADER */
+.header {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.header h1 {
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-size: 20px;
+}
+
+/* ANALYTICS SECTIONS */
+.section {
+    max-width: 1100px;
+    margin: 40px auto;
+    background: rgba(0,0,0,0.55);
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.section h2 {
+    margin-bottom: 15px;
+    color: #ffd700;
+}
+
+/* GRID */
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+}
+
+.card {
+    background: rgba(0,0,0,0.6);
+    padding: 20px;
+    width: 230px;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    background: rgba(0,0,0,0.75);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    background: rgba(0,0,0,0.5);
+}
+
+/* ============================
+   RESPONSIVE DESIGN
+   ============================ */
+@media (max-width: 900px) {
+    .navbar {
+        padding: 15px 30px;
+    }
+    .header h1 {
+        font-size: 40px;
+    }
+    .card {
+        width: 45%;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+        text-align: center;
+    }
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    .header h1 {
+        font-size: 32px;
+    }
+    .card {
+        width: 90%;
+    }
+}
+
+@media (max-width: 400px) {
+    .header h1 {
+        font-size: 26px;
+    }
+    .card {
+        width: 100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <a href="index.html" class="logo">
+        <img src="logo.png" alt="Logo">
+        Nona Plan
+    </a>
+
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="planner.html">Planner</a></li>
+        <li><a href="analytics.html" class="active">Analytics</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- HEADER -->
+<section class="header">
+    <h1>📊 Study Analytics</h1>
+    <p>Insights from your Planner, Resources, and Study Sessions</p>
+</section>
+
+<!-- OVERVIEW -->
+<div class="section">
+    <h2>Overview</h2>
+    <div class="grid">
+        <div class="card"><h3>Total Study Time</h3><p id="totalTime">0 min</p></div>
+        <div class="card"><h3>Total Sessions</h3><p id="totalSessions">0</p></div>
+        <div class="card"><h3>Average Session</h3><p id="avgSession">0 min</p></div>
+        <div class="card"><h3>Current Streak</h3><p id="streak">0 days</p></div>
+    </div>
+</div>
+
+<!-- WEEKLY ANALYTICS -->
+<div class="section">
+    <h2>Weekly Analytics</h2>
+    <div class="grid" id="weeklyGrid"></div>
+</div>
+
+<!-- MONTHLY ANALYTICS -->
+<div class="section">
+    <h2>Monthly Analytics</h2>
+    <div class="grid" id="monthlyGrid"></div>
+</div>
+
+<!-- SUBJECT BREAKDOWN -->
+<div class="section">
+    <h2>Subjects Breakdown</h2>
+    <div class="grid" id="subjectGrid"></div>
+</div>
+
+<!-- PLANNED VS ACTUAL -->
+<div class="section">
+    <h2>Planned vs Actual</h2>
+    <div class="grid" id="planCompare"></div>
+</div>
+
+<!-- RESOURCES USAGE -->
+<div class="section">
+    <h2>Resources Usage</h2>
+    <div class="grid" id="resourceGrid"></div>
+</div>
+
+<footer>
+    <p>© 2026 Nona Plan | Designed for students</p>
+</footer>
+
+<script>
+/* ============================================================
+   LOAD REAL DATA
+   ============================================================ */
+
+let studySessions = JSON.parse(localStorage.getItem("studySessions") || "[]");
+let plannerData = JSON.parse(localStorage.getItem("plannerData") || "[]");
+
+/* ============================================================
+   OVERVIEW
+   ============================================================ */
+
+let totalMinutes = studySessions.reduce((sum, s) => sum + s.time, 0);
+document.getElementById("totalTime").textContent = totalMinutes + " min";
+
+document.getElementById("totalSessions").textContent = studySessions.length;
+
+let avg = studySessions.length ? Math.round(totalMinutes / studySessions.length) : 0;
+document.getElementById("avgSession").textContent = avg + " min";
+
+/* STREAK */
+function calculateStreak() {
+    if (studySessions.length === 0) return 0;
+
+    let dates = [...new Set(studySessions.map(s => s.date.split("T")[0]))];
+    dates.sort();
+
+    let streak = 1;
+    for (let i = dates.length - 1; i > 0; i--) {
+        let d1 = new Date(dates[i]);
+        let d2 = new Date(dates[i - 1]);
+        let diff = (d1 - d2) / (1000 * 60 * 60 * 24);
+
+        if (diff === 1) streak++;
+        else break;
+    }
+    return streak;
+}
+document.getElementById("streak").textContent = calculateStreak() + " days";
+
+/* ============================================================
+   WEEKLY ANALYTICS
+   ============================================================ */
+
+let weeklyTotals = {};
+studySessions.forEach(s => {
+    let date = new Date(s.date);
+    let week = `${date.getFullYear()}-W${Math.ceil(date.getDate() / 7)}`;
+    weeklyTotals[week] = (weeklyTotals[week] || 0) + s.time;
+});
+
+let weeklyGrid = document.getElementById("weeklyGrid");
+for (let week in weeklyTotals) {
+    let box = document.createElement("div");
+    box.className = "card";
+    box.innerHTML = `<h3>${week}</h3><p>${weeklyTotals[week]} min</p>`;
+    weeklyGrid.appendChild(box);
+}
+
+/* ============================================================
+   MONTHLY ANALYTICS
+   ============================================================ */
+
+let monthlyTotals = {};
+studySessions.forEach(s => {
+    let date = new Date(s.date);
+    let month = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}`;
+    monthlyTotals[month] = (monthlyTotals[month] || 0) + s.time;
+});
+
+let monthlyGrid = document.getElementById("monthlyGrid");
+for (let month in monthlyTotals) {
+    let box = document.createElement("div");
+    box.className = "card";
+    box.innerHTML = `<h3>${month}</h3><p>${monthlyTotals[month]} min</p>`;
+    monthlyGrid.appendChild(box);
+}
+
+/* ============================================================
+   SUBJECT BREAKDOWN
+   ============================================================ */
+
+let subjectTotals = {};
+studySessions.forEach(s => {
+    subjectTotals[s.subject] = (subjectTotals[s.subject] || 0) + s.time;
+});
+
+let subjectGrid = document.getElementById("subjectGrid");
+for (let subject in subjectTotals) {
+    let box = document.createElement("div");
+    box.className = "card";
+    box.innerHTML = `<h3>${subject}</h3><p>${subjectTotals[subject]} min</p>`;
+    subjectGrid.appendChild(box);
+}
+
+/* ============================================================
+   PLANNED VS ACTUAL
+   ============================================================ */
+
+let planCompare = document.getElementById("planCompare");
+
+plannerData.forEach(plan => {
+    let actual = subjectTotals[plan.subject] || 0;
+
+    let box = document.createElement("div");
+    box.className = "card";
+    box.innerHTML = `
+        <h3>${plan.subject}</h3>
+        <p>Planned: ${plan.planned} min</p>
+        <p>Actual: ${actual} min</p>
+    `;
+    planCompare.appendChild(box);
+});
+
+/* ============================================================
+   RESOURCE USAGE
+   ============================================================ */
+
+let resourceTotals = {};
+
+studySessions.forEach(s => {
+    if (!resourceTotals[s.resource]) {
+        resourceTotals[s.resource] = { subject: s.subject, time: 0 };
+    }
+    resourceTotals[s.resource].time += s.time;
+});
+
+let resourceGrid = document.getElementById("resourceGrid");
+
+for (let r in resourceTotals) {
+    let box = document.createElement("div");
+    box.className = "card";
+    box.innerHTML = `
+        <h3>${r}</h3>
+        <p>${resourceTotals[r].subject}</p>
+        <p>${resourceTotals[r].time} min</p>
+    `;
+    resourceGrid.appendChild(box);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - Nona Plan</title>
+<style>
+/* ===== GLOBAL STYLES ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: url('background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* ===== OVERLAY ===== */
+.overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.35);
+  z-index: 1;
+}
+
+/* ===== NAVBAR ===== */
+nav.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: rgba(0,0,0,0.7);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+nav .logo img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; /* circular logo */
+}
+
+nav .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav .nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+nav .nav-links a:hover,
+nav .nav-links a.active {
+  color: #ffd700;
+}
+
+/* ===== CONTACT FORM ===== */
+.contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.contact-content {
+  background: rgba(0,0,0,0.8);
+  padding: 35px;
+  border-radius: 12px;
+  max-width: 450px;
+  width: 100%;
+  text-align: center;
+}
+
+.contact-content h1 {
+  margin-bottom: 15px;
+  color: #ffd700;
+}
+
+.contact-content p {
+  margin-bottom: 20px;
+  color: #ddd;
+}
+
+.contact-content input,
+.contact-content textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+}
+
+.contact-content button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  background: #ffd700;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-content button:hover {
+  background: #e6c200;
+}
+
+#statusMsg {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: 15px;
+  background: rgba(0,0,0,0.7);
+  margin-top: 40px;
+  color: #fff;
+}
+</style>
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">
+    <img src="logo.png" alt="Nona Plan Logo">
+    <span>Nona Plan</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="planner.html">Planner</a></li>
+    <li><a href="analytics.html">Analytics</a></li>
+    <li><a href="resources.html">Resources</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- CONTACT FORM -->
+<section class="contact">
+  <div class="contact-content">
+    <h1>Contact Us</h1>
+    <p>Send us your questions or feedback!</p>
+    <form id="contactForm">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <p id="statusMsg"></p>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 Nona Plan - Developed by Grade 12 Students</p>
+</footer>
+
+<!-- ===== EMAILJS SCRIPT ===== -->
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  // Initialize EmailJS
+  (function(){
+    emailjs.init("YOUR_USER_ID"); // <-- replace with your EmailJS user ID
+  })();
+
+  const form = document.getElementById("contactForm");
+  const statusMsg = document.getElementById("statusMsg");
+  const button = form.querySelector("button");
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    statusMsg.textContent = "⏳ Sending message...";
+    button.disabled = true;
+
+    emailjs.sendForm("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID", this)
+      .then(() => {
+        statusMsg.textContent = "✅ Message sent successfully!";
+        form.reset();
+        button.disabled = false;
+      }, (err) => {
+        console.error(err);
+        statusMsg.textContent = "❌ Failed to send message. Try again.";
+        button.disabled = false;
+      });
+  });
+</script>
+
+</body>
+</html>

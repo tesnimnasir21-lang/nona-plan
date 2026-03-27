@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nona Plan - Study Planner</title>
+<style>
+/* ===== GLOBAL RESET + FONT ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* ===== BACKGROUND ===== */
+body {
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white;
+    min-height: 100vh;
+}
+
+/* ===== OVERLAY ===== */
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.35);
+    z-index: -1;
+}
+
+/* ===== NAVBAR ===== */
+nav.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: rgba(0,0,0,0.6);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav .logo img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffd700;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: #ffd700;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* ===== HEADINGS ===== */
+h1, h2 {
+    font-family: Arial, sans-serif;
+    margin-bottom: 15px;
+}
+
+h2 {
+    margin-top: 25px;
+}
+
+/* ===== TABLES ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid rgba(255,255,255,0.4);
+    text-align: center;
+    font-size: 16px;
+}
+
+th {
+    background: rgba(0,0,0,0.6);
+    font-weight: bold;
+}
+
+td {
+    background: rgba(0,0,0,0.3);
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+    background: #ffd700;
+    color: black;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: Arial, sans-serif;
+}
+
+.btn:hover {
+    background: #e6c200;
+}
+
+/* ===== INPUTS ===== */
+input, select {
+    padding: 8px;
+    border-radius: 6px;
+    border: none;
+    margin-right: 8px;
+    margin-bottom: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    min-width: 120px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    table, th, td {
+        font-size: 14px;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">
+        <img src="logo.png" alt="Nona Plan Logo">
+    </div>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="planner.html" class="active">Planner</a></li>
+        <li><a href="analytics.html">Analytics</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+<h1>📅 Study Planner</h1>
+
+<!-- BUILT-IN PLAN -->
+<section>
+<h2>Weekly Plan (Built-in)</h2>
+<table id="builtInTable">
+<thead>
+<tr>
+<th>Date</th>
+<th>Subject / Task</th>
+<th>Resource</th>
+<th>Duration</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<!-- JS filled -->
+</tbody>
+</table>
+</section>
+
+<!-- USER-DEFINED PLAN -->
+<section>
+<h2>Your Custom Plan</h2>
+<div>
+<input type="date" id="customDate">
+<input type="text" id="customSubject" placeholder="Subject / Task">
+<input type="text" id="customResource" placeholder="Resource link or description">
+<input type="number" id="customDuration" placeholder="Duration (min)">
+<button class="btn" onclick="addCustomTask()">Add Task</button>
+</div>
+<table id="customTable">
+<thead>
+<tr>
+<th>Date</th>
+<th>Subject / Task</th>
+<th>Resource</th>
+<th>Duration</th>
+<th>Status</th>
+<th>Delete</th>
+</tr>
+</thead>
+<tbody>
+<!-- JS filled -->
+</tbody>
+</table>
+</section>
+</div>
+
+<script>
+// ===== BUILT-IN PLAN =====
+const builtInTasks=[
+{date:"2026-03-23",subject:"Mathematics",resource:"study.html?file=maths/notes/Algebra_Basics.pdf",duration:"60"},
+{date:"2026-03-23",subject:"Physics",resource:"study.html?file=physics/notes/Mechanics_Basics.pdf",duration:"45"},
+{date:"2026-03-24",subject:"English",resource:"study.html?file=english/notes/Grammar_Essentials_Notes.pdf",duration:"30"},
+// Add more tasks
+];
+
+function renderBuiltInTable(){
+    const tbody=document.querySelector("#builtInTable tbody");
+    tbody.innerHTML="";
+    builtInTasks.forEach((task,i)=>{
+        const tr=document.createElement("tr");
+        tr.innerHTML=`
+        <td>${task.date}</td>
+        <td>${task.subject}</td>
+        <td><a href="${task.resource}" target="_blank" class="btn">Open</a></td>
+        <td>${task.duration} min</td>
+        <td><button class="btn" onclick="markDoneBuiltIn(${i})">Done</button></td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+const builtInStatus=JSON.parse(localStorage.getItem("builtInStatus")||"{}");
+
+function markDoneBuiltIn(index){
+    builtInStatus[index]=true;
+    localStorage.setItem("builtInStatus",JSON.stringify(builtInStatus));
+    alert("Task marked as done!");
+    renderBuiltInTable();
+}
+
+renderBuiltInTable();
+
+// ===== USER-CUSTOM PLAN =====
+let customTasks=JSON.parse(localStorage.getItem("customTasks")||"[]");
+
+function renderCustomTable(){
+    const tbody=document.querySelector("#customTable tbody");
+    tbody.innerHTML="";
+    customTasks.forEach((task,i)=>{
+        const tr=document.createElement("tr");
+        tr.innerHTML=`
+        <td>${task.date}</td>
+        <td>${task.subject}</td>
+        <td><a href="${task.resource}" target="_blank" class="btn">Open</a></td>
+        <td>${task.duration} min</td>
+        <td><button class="btn" onclick="markDoneCustom(${i})">Done</button></td>
+        <td><button class="btn" onclick="deleteCustom(${i})">Delete</button></td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+function addCustomTask(){
+    const date=document.getElementById("customDate").value;
+    const subject=document.getElementById("customSubject").value.trim();
+    const resource=document.getElementById("customResource").value.trim();
+    const duration=document.getElementById("customDuration").value;
+    if(date && subject){
+        customTasks.push({date,subject,resource,duration,status:false});
+        localStorage.setItem("customTasks",JSON.stringify(customTasks));
+        renderCustomTable();
+        document.getElementById("customDate").value="";
+        document.getElementById("customSubject").value="";
+        document.getElementById("customResource").value="";
+        document.getElementById("customDuration").value="";
+    } else {
+        alert("Please fill date and subject.");
+    }
+}
+
+function markDoneCustom(index){
+    customTasks[index].status=true;
+    localStorage.setItem("customTasks",JSON.stringify(customTasks));
+    alert("Custom task marked as done!");
+    renderCustomTable();
+}
+
+function deleteCustom(index){
+    if(confirm("Delete this task?")){
+        customTasks.splice(index,1);
+        localStorage.setItem("customTasks",JSON.stringify(customTasks));
+        renderCustomTable();
+    }
+}
+
+renderCustomTable();
+</script>
+
+</body>
+</html>

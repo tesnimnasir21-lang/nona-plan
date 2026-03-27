@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nona Plan - Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<style>
+nav .logo img {
+    width: 60px;        /* adjust size if needed */
+    height: 60px;       /* same as width */
+    border-radius: 50%; /* makes it circular */
+    object-fit: cover;  /* keeps the image from stretching */
+    border: 2px solid #ffd700; /* optional border */
+}
+</style>
+
+    <!-- Overlay for readability -->
+    <div class="overlay"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <img src="logo.png" alt="Nona Plan Logo" style="height:50px;">
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="planner.html">Planner</a></li>
+            <li><a href="analytics.html">Analytics</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Nona Plan</h1>
+            <p>Your Study & Exam Companion</p>
+            <a href="#" class="btn" id="startPlannerBtn">Start Planning</a>
+        </div>
+    </section>
+
+    <!-- Features Preview -->
+    <section class="features">
+        <div class="feature-card">
+            <h3>Study Planner</h3>
+            <p>Organize your tasks and schedule efficiently.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Focus Timer</h3>
+            <p>Use Pomodoro technique to stay productive.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Analytics</h3>
+            <p>Track your progress and completed tasks.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Resources</h3>
+            <p>Access notes and practice questions for all subjects.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Nona Plan - Developed by Grade 12 Students</p>
+    </footer>
+
+<script>
+    // Redirect to login if not logged in
+    document.getElementById("startPlannerBtn").addEventListener("click", function() {
+        const loggedIn = localStorage.getItem("loggedIn");
+        if(loggedIn === "true"){
+            window.location.href = "planner.html";
+        } else {
+            window.location.href = "login.html";
+        }
+    });
+</script>
+</body>
+</html>

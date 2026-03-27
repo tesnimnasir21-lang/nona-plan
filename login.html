@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Nona Plan</title>
+
+<!-- Use same styling as index.html -->
+<link rel="stylesheet" href="style.css">
+
+<style>
+nav .logo img {
+    width: 60px;        /* adjust size if needed */
+    height: 60px;       /* same as width */
+    border-radius: 50%; /* makes it circular */
+    object-fit: cover;  /* keeps the image from stretching */
+    border: 2px solid #ffd700; /* optional border */
+}
+/* ===== LOGIN / REGISTER FORM ===== */
+.auth-container {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 30px;
+    background: rgba(0,0,0,0.6);
+    border-radius: 12px;
+    text-align: center;
+}
+
+.auth-container h2 {
+    margin-bottom: 20px;
+}
+
+.auth-container input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: none;
+}
+
+.auth-container button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    background: #ffd700;
+    color: black;
+    transition: 0.3s;
+}
+
+.auth-container button:hover {
+    background: #e6c200;
+}
+
+#toggleMode {
+    margin-top: 15px;
+    background: transparent;
+    color: #fff;
+    text-decoration: underline;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+}
+#error {
+    color: #ff6961;
+    margin-bottom: 10px;
+}
+</style>
+</head>
+
+<body>
+<div class="overlay"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">
+        <img src="logo.png" alt="Nona Plan Logo">
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="planner.html">Planner</a></li>
+        <li><a href="analytics.html">Analytics</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- LOGIN / REGISTER FORM -->
+<div class="auth-container" id="authContainer">
+    <h2 id="formTitle">🔐 Login</h2>
+    <p id="error"></p>
+
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button id="authBtn">Login</button>
+
+    <button id="toggleMode">Don't have an account? Register</button>
+</div>
+
+<script>
+// ===== Elements =====
+const emailEl = document.getElementById("email");
+const passEl = document.getElementById("password");
+const authBtn = document.getElementById("authBtn");
+const toggleModeBtn = document.getElementById("toggleMode");
+const errorEl = document.getElementById("error");
+const formTitle = document.getElementById("formTitle");
+
+// ===== Mode =====
+let isLogin = true; // start in login mode
+
+// ===== Toggle Login/Register Mode =====
+toggleModeBtn.addEventListener("click", () => {
+    isLogin = !isLogin;
+    if(isLogin){
+        formTitle.textContent = "🔐 Login";
+        authBtn.textContent = "Login";
+        toggleModeBtn.textContent = "Don't have an account? Register";
+    } else {
+        formTitle.textContent = "📝 Register";
+        authBtn.textContent = "Register";
+        toggleModeBtn.textContent = "Already have an account? Login";
+    }
+    errorEl.textContent = "";
+});
+
+// ===== Auth Function =====
+authBtn.addEventListener("click", () => {
+    const email = emailEl.value.trim();
+    const password = passEl.value.trim();
+    if(!email || !password){
+        errorEl.textContent = "Please fill in all fields.";
+        return;
+    }
+
+    // Load users from localStorage
+    let users = JSON.parse(localStorage.getItem("users") || "{}");
+
+    if(isLogin){
+        // LOGIN
+        if(users[email] && users[email] === password){
+            localStorage.setItem("loggedIn", email);
+            window.location.href = "planner.html";
+        } else {
+            errorEl.textContent = "Invalid email or password!";
+        }
+    } else {
+        // REGISTER
+        if(users[email]){
+            errorEl.textContent = "Email already registered!";
+        } else {
+            users[email] = password;
+            localStorage.setItem("users", JSON.stringify(users));
+            errorEl.style.color = "#00ff99";
+            errorEl.textContent = "Registration successful! You can now login.";
+            isLogin = true;
+            formTitle.textContent = "🔐 Login";
+            authBtn.textContent = "Login";
+            toggleModeBtn.textContent = "Don't have an account? Register";
+            emailEl.value = "";
+            passEl.value = "";
+        }
+    }
+});
+
+// ===== Auto-redirect if already logged in =====
+if(localStorage.getItem("loggedIn")){
+    window.location.href = "planner.html";
+}
+</script>
+
+</body>
+</html>
