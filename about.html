@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,38 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Nona Plan</title>
     <link rel="stylesheet" href="style.css">
-
-    <style>
-    /* LOGO IMAGE STYLE */
-    .logo img {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        object-fit: cover;
-
-        /* Golden ring */
-        border: 3px solid #ffd700;
-
-        /* Soft glow */
-        box-shadow: 0 0 8px #ffd70080;
-
-        margin-left: 5px;
-    }
-
-    /* NAVBAR ALIGNMENT FIX */
-    .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 40px;
-    }
-
-    /* ACTIVE LINK */
-    .nav-links a.active {
-        color: #ffd700;
-    }
-    </style>
-
 </head>
 <body>
 
@@ -45,21 +14,16 @@
 
     <!-- Navbar -->
     <nav class="navbar">
-
-        <!-- LOGO IMAGE -->
-        <div class="logo">
-            <img src="logo.png" alt="Nona Plan Logo">
-        </div>
-
+        <a href="index.html" class="logo">Nona Plan</a>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="planner.html">Planner</a></li>
+            <li><a href="timer.html">Timer</a></li>
             <li><a href="analytics.html">Analytics</a></li>
             <li><a href="resources.html">Resources</a></li>
-            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="about.html">About</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
-
     </nav>
 
     <!-- About Section -->
@@ -75,18 +39,46 @@
                 <li>JavaScript</li>
             </ul>
 
-            <h2>Our Team</h2>
-            <ul>
-                <li>Khalid Ibrahim – Project Leader</li>
-                <li>Tesnim Nasir – Planner Developer</li>
-                <li>Nur Alawis – Timer Developer</li>
-                <li>Halewya Aswab – Analytics Developer</li>
-                <li>Merwan Ahmed – Resources Manager</li>
-                <li>Ibrahim Mahbub – PDF Notes Organizer</li>
-                <li>Hanan Mujib – About & Contact Pages</li>
-                <li>Yusuf Sherif and Reyan Abdu – CSS Styling & Testing</li>
-            </ul>
-        </div>
+          <h2>Our Team</h2>
+<div class="team">
+    <div class="member">
+        <img src="khalid.jpg" alt="Khalid Ibrahim">
+        <p><strong>Khalid Ibrahim</strong> – Project Leader</p>
+    </div>
+    <div class="member">
+        <img src="tesnim.jpg" alt="Tesnim Nasir">
+        <p><strong>Tesnim Nasir</strong> – Planner Developer</p>
+    </div>
+    <div class="member">
+        <img src="nur.jpg" alt="Nur Alawis">
+        <p><strong>Nur Alawis</strong> – Timer Developer</p>
+    </div>
+    <div class="member">
+        <img src="halewya.jpg" alt="Halewya Aswab">
+        <p><strong>Halewya Aswab</strong> – Analytics Developer</p>
+    </div>
+    <div class="member">
+        <img src="merwan.jpg" alt="Merwan Ahmed">
+        <p><strong>Merwan Ahmed</strong> – Resources Manager</p>
+    </div>
+    <div class="member">
+        <img src="ibrahim.jpg" alt="Ibrahim Mahbub">
+        <p><strong>Ibrahim Mahbub</strong> – PDF Notes Organizer</p>
+    </div>
+    <div class="member">
+        <img src="hanan.jpg" alt="Hanan Mujib">
+        <p><strong>Hanan Mujib</strong> – About & Contact Pages</p>
+    </div>
+    <div class="member">
+        <img src="yusuf.jpg" alt="Yusuf Sherif">
+        <p><strong>Yusuf Sherif</strong> – CSS Styling & Testing</p>
+    </div>
+    <div class="member">
+        <img src="reyan.jpg" alt="Reyan Abdu">
+        <p><strong>Reyan Abdu</strong> – CSS Styling & Testing</p>
+    </div>
+</div>
+
     </section>
 
     <!-- Footer -->
