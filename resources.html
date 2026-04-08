@@ -2,220 +2,238 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nona Plan - Study Resources</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nona Plan - Study Resources</title>
 
-<style>
+  <!-- Google Site Verification -->
+  <link rel="google-site-verification" href="google2df309bee64ff30b.html" />
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI', sans-serif;
-}
-
-body{
-    background-image:url('background.jpg');
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-    background-attachment:fixed;
-    color:white;
-}
-
-/* OVERLAY */
-.overlay{
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.35);
-    z-index:-1;
-}
-
-/* NAVBAR */
-.navbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 40px;
-}
-
-/* LOGO */
-.logo img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-
-    /* Golden ring */
-    border: 3px solid #ffd700;
-
-    /* Soft glow */
-    box-shadow: 0 0 8px #ffd70080;
-
-    margin-left: 5px;
-}
-
-.nav-links{
-    list-style:none;
-    display:flex;
-    gap:25px;
-}
-
-.nav-links a{
-    text-decoration:none;
-    color:white;
-    transition:0.3s;
-}
-
-.nav-links a:hover,
-.nav-links a.active{
-    color:#ffd700;
-}
-
-/* MAIN */
-.resources-container{
-    padding:40px 20px;
-}
-
-.page-header{
-    text-align:center;
-    margin-bottom:30px;
-}
-
-/* SUBJECTS GRID */
-.subjects{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
-    gap:20px;
-}
-
-/* SUBJECT CARD */
-.subject-card{
-    background:rgba(0,0,0,0.6);
-    padding:25px;
-    border-radius:15px;
-    text-align:center;
-    transition:0.3s;
-}
-
-.subject-card:hover{
-    transform:translateY(-8px);
-    background:rgba(0,0,0,0.75);
-}
-
-.subject-card h3{
-    margin-bottom:15px;
-}
-
-/* BUTTON */
-.open-btn{
-    display:inline-block;
-    padding:10px 15px;
-    background:#ffd700;
-    color:black;
-    text-decoration:none;
-    border-radius:6px;
-    font-weight:bold;
-    transition:0.3s;
-}
-
-.open-btn:hover{
-    background:#e6c200;
-}
-
-/* FOOTER */
-.footer{
-    text-align:center;
-    padding:20px;
-    margin-top:40px;
-    background:rgba(0,0,0,0.5);
-}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-    .navbar{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:10px;
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
     }
-}
 
-</style>
+    body {
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: white;
+    }
 
+    /* OVERLAY */
+    .overlay {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: -1;
+    }
+
+    /* NAVBAR */
+    nav .logo img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #ffd700;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #ffd700;
+    }
+
+    /* 🔴 LOGOUT BUTTON */
+    .logout-btn {
+      background: #ff3b30;
+      color: white !important;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.3s;
+      display: inline-block;
+    }
+
+    .logout-btn:hover {
+      background: #c70015;
+      transform: scale(1.05);
+    }
+
+    /* MAIN */
+    .resources-container {
+      padding: 40px 20px;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    /* SUBJECTS GRID */
+    .subjects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    /* SUBJECT CARD */
+    .subject-card {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .subject-card:hover {
+      transform: translateY(-8px);
+      background: rgba(0, 0, 0, 0.75);
+    }
+
+    .subject-card h3 {
+      margin-bottom: 15px;
+    }
+
+    /* BUTTON */
+    .open-btn {
+      display: inline-block;
+      padding: 10px 15px;
+      background: #ffd700;
+      color: black;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .open-btn:hover {
+      background: #e6c200;
+    }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="overlay"></div>
+  <div class="overlay"></div>
 
-<!-- NAVBAR -->
-<nav class="navbar">
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <h2>📘 Nona Plan</h2>
 
-  <div class="logo">
-    <img src="logo.png" alt="Nona Plan Logo">
-  </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="planner.html">Planner</a></li>
+      <li><a href="analytics.html">Analytics</a></li>
+      <li><a href="resources.html" class="active">Resources</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
 
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="planner.html">Planner</a></li>
-    <li><a href="analytics.html">Analytics</a></li>
-    <li><a href="resources.html" class="active">Resources</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
+      <!-- 🔴 LOGOUT BUTTON -->
+      <li><a href="#" class="logout-btn" onclick="logout()">Logout</a></li>
+    </ul>
+  </nav>
 
-</nav>
+  <!-- MAIN -->
+  <main class="resources-container">
 
-<!-- MAIN -->
-<main class="resources-container">
+    <header class="page-header">
+      <h1>📚 Study Resources</h1>
+      <p>Select a subject to explore available materials.</p>
+    </header>
 
-  <header class="page-header">
-    <h1>📚 Study Resources</h1>
-    <p>Select a subject to explore available materials.</p>
-  </header>
+    <section class="subjects">
 
-  <section class="subjects">
+      <div class="subject-card">
+        <h3>📐 Mathematics</h3>
+        <p>Notes, videos, past papers, and assignments.</p>
+        <a href="maths.html" class="open-btn">Open Subject</a>
+      </div>
 
-    <div class="subject-card">
-      <h3>📐 Mathematics</h3>
-      <p>Notes, videos, past papers, and assignments.</p>
-      <a href="maths.html" class="open-btn">Open Subject</a>
-    </div>
+      <div class="subject-card">
+        <h3>⚛️ Physics</h3>
+        <p>Concept explanations and practice materials.</p>
+        <a href="physics.html" class="open-btn">Open Subject</a>
+      </div>
 
-    <div class="subject-card">
-      <h3>⚛️ Physics</h3>
-      <p>Concept explanations and practice materials.</p>
-      <a href="physics.html" class="open-btn">Open Subject</a>
-    </div>
+      <div class="subject-card">
+        <h3>🧪 Chemistry</h3>
+        <p>Reactions, formulas, and lab resources.</p>
+        <a href="chemistry.html" class="open-btn">Open Subject</a>
+      </div>
 
-    <div class="subject-card">
-      <h3>🧪 Chemistry</h3>
-      <p>Reactions, formulas, and lab resources.</p>
-      <a href="chemistry.html" class="open-btn">Open Subject</a>
-    </div>
+      <div class="subject-card">
+        <h3>🧬 Biology</h3>
+        <p>Diagrams, notes, and revision materials.</p>
+        <a href="biology.html" class="open-btn">Open Subject</a>
+      </div>
 
-    <div class="subject-card">
-      <h3>🧬 Biology</h3>
-      <p>Diagrams, notes, and revision materials.</p>
-      <a href="biology.html" class="open-btn">Open Subject</a>
-    </div>
+      <div class="subject-card">
+        <h3>📖 English</h3>
+        <p>Grammar, comprehension, and writing guides.</p>
+        <a href="english.html" class="open-btn">Open Subject</a>
+      </div>
 
-    <div class="subject-card">
-      <h3>📖 English</h3>
-      <p>Grammar, comprehension, and writing guides.</p>
-      <a href="english.html" class="open-btn">Open Subject</a>
-    </div>
+    </section>
 
-  </section>
+  </main>
 
-</main>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2026 Nona Plan | Designed for students</p>
+  </footer>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <p>© 2026 Nona Plan | Designed for students</p>
-</footer>
+  <script>
+    function logout() {
+      localStorage.removeItem("loggedIn");
+      window.location.href = "login.html";
+    }
+  </script>
 
 </body>
 </html>
