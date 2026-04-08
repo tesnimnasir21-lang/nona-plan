@@ -108,7 +108,6 @@
       line-height: 1.6;
     }
 
-    /* TEAM GRID */
     .team {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -138,7 +137,6 @@
       border: 2px solid #ffd700;
     }
 
-    /* FOOTER */
     footer {
       text-align: center;
       padding: 20px;
@@ -146,15 +144,7 @@
       margin-top: 40px;
     }
 
-    /* =========================
-       RESPONSIVE DESIGN
-    ========================= */
-    @media (max-width: 1024px) {
-      .team {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
+    /* RESPONSIVE */
     @media (max-width: 768px) {
       .hamburger {
         display: flex;
@@ -175,6 +165,10 @@
         display: flex;
       }
 
+      .team {
+        grid-template-columns: 1fr;
+      }
+
       .about-content h1 {
         font-size: 28px;
       }
@@ -184,13 +178,15 @@
         padding: 0 10px;
       }
 
-      .team {
-        grid-template-columns: 1fr;
-      }
-
       .member img {
         width: 80px;
         height: 80px;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .team {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
   </style>
@@ -205,7 +201,6 @@
       <img src="logo.png" alt="Nona Plan Logo">
     </a>
 
-    <!-- HAMBURGER -->
     <div class="hamburger" onclick="toggleMenu()">
       <div></div>
       <div></div>
@@ -224,19 +219,30 @@
     </ul>
   </nav>
 
-  <!-- ABOUT -->
+  <!-- ABOUT CONTENT -->
   <section class="about">
     <div class="about-content">
       <h1>About Nona Plan</h1>
-      <p>
-        Nona Plan is a study and exam companion designed for Grade 12 students.
-        It helps organize study schedules, track progress, and access learning resources.
-      </p>
+      <p>Nona Plan is a study and exam companion designed for Grade 12 students. It helps organize study schedules, track progress, and access notes and practice questions for all subjects from Grade 9 to 12.</p>
 
-      <h2 style="text-align:center; margin-top:40px;">Our Team</h2>
+      <h2>Technologies Used</h2>
+      <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+      </ul>
 
+      <h2>Our Team</h2>
       <div class="team">
-        <!-- Team members here -->
+        <div class="member"><img src="khalid.jpg" alt="Khalid Ibrahim"><p><strong>Khalid Ibrahim</strong> – Project Leader</p></div>
+        <div class="member"><img src="tesnim.jpg" alt="Tesnim Nasir"><p><strong>Tesnim Nasir</strong> – Planner Developer</p></div>
+        <div class="member"><img src="nur.jpg" alt="Nur Alawis"><p><strong>Nur Alawis</strong> – Timer Developer</p></div>
+        <div class="member"><img src="halewya.jpg" alt="Halewya Aswab"><p><strong>Halewya Aswab</strong> – Analytics Developer</p></div>
+        <div class="member"><img src="merwan.jpg" alt="Merwan Ahmed"><p><strong>Merwan Ahmed</strong> – Resources Manager</p></div>
+        <div class="member"><img src="ibrahim.jpg" alt="Ibrahim Mahbub"><p><strong>Ibrahim Mahbub</strong> – PDF Notes Organizer</p></div>
+        <div class="member"><img src="hanan.jpg" alt="Hanan Mujib"><p><strong>Hanan Mujib</strong> – About & Contact Pages</p></div>
+        <div class="member"><img src="yusuf.jpg" alt="Yusuf Sherif"><p><strong>Yusuf Sherif</strong> – CSS Styling & Testing</p></div>
+        <div class="member"><img src="reyan.jpg" alt="Reyan Abdu"><p><strong>Reyan Abdu</strong> – CSS Styling & Testing</p></div>
       </div>
     </div>
   </section>
