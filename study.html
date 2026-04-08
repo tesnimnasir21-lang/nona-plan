@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,14 +100,11 @@ body {
     transform: translateX(-50%);
     width: 900px;
     height: 70vh;
-
     background: rgba(0,0,0,0.4);
     border: 2px solid #ffd700;
     border-radius: 10px;
-
     resize: both;
     overflow: hidden;
-
     cursor: grab;
     z-index: 999;
 }
@@ -233,7 +231,6 @@ const video = params.get("video");
 
 const viewer = document.getElementById("viewer");
 
-// PRIORITY: video first, then PDF
 if (video) {
     viewer.src = video;
 } else if (file) {
@@ -263,10 +260,18 @@ function startTimer() {
     }
 }
 
-function pauseTimer() { clearInterval(interval); interval = null; }
-function resetTimer() { pauseTimer(); elapsedSeconds = 0; updateDisplay(); }
+function pauseTimer() {
+    clearInterval(interval);
+    interval = null;
+}
 
-// SAVE SESSION
+function resetTimer() {
+    pauseTimer();
+    elapsedSeconds = 0;
+    updateDisplay();
+}
+
+// SAVE SESSION (✅ FIXED)
 function finishStudy() {
     pauseTimer();
     if (elapsedSeconds < 10) return alert("Too short!");
@@ -276,7 +281,7 @@ function finishStudy() {
     sessions.push({
         subject: params.get("subject") || "Unknown",
         resource: file || video,
-        time: Math.floor(elapsedSeconds / 60),
+        duration: Math.floor(elapsedSeconds / 60), // ✅ correct property
         date: new Date().toISOString()
     });
 
@@ -300,10 +305,11 @@ function positionViewer() {
     const timer = document.getElementById("timerBox");
     viewerBox.style.top = (timer.offsetTop + timer.offsetHeight + 20) + "px";
 }
+
 window.addEventListener("load", positionViewer);
 window.addEventListener("resize", positionViewer);
 
-// DRAGGING (HORIZONTAL ONLY)
+// DRAGGING
 const dragShield = document.getElementById("dragShield");
 
 let isDragging = false, offsetX = 0;
@@ -320,12 +326,9 @@ viewerBox.addEventListener("mousedown", (e) => {
 document.addEventListener("mousemove", (e) => {
     if (isDragging) {
         let newLeft = e.clientX - offsetX;
-
         const maxX = window.innerWidth - viewerBox.offsetWidth;
         newLeft = Math.max(0, Math.min(newLeft, maxX));
-
         viewerBox.style.left = newLeft + "px";
-
         positionViewer();
     }
 });
