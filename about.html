@@ -1,291 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About - Nona Plan</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Nona Plan</title>
 
-<link rel="stylesheet" href="style.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background: url('background.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: white;
-    min-height: 100vh;
-}
-
-/* OVERLAY */
-.overlay {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.4);
-    z-index: -1;
-}
-
-/* NAVBAR */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    background: rgba(0,0,0,0.6);
-    position: relative;
-}
-
-/* LOGO */
-nav .logo img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #ffd700;
-}
-
-/* NAV LINKS */
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    list-style: none;
-}
-
-.nav-links li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.nav-links li a:hover,
-.nav-links li a.active {
-    color: #ffd700;
-}
-
-/* LOGOUT BUTTON */
-.logout-btn {
-    background: #ff3b30;
-    color: white !important;
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-weight: bold;
-    transition: 0.3s;
-    display: inline-block;
-}
-
-.logout-btn:hover {
-    background: #c70015;
-    transform: scale(1.05);
-}
-
-/* ABOUT SECTION */
-.about {
-    padding: 60px 20px;
-    max-width: 1200px;
-    margin: auto;
-}
-
-.about-content h1 {
-    font-size: 42px;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-.about-content p {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 30px;
-    font-size: 18px;
-    line-height: 1.6;
-}
-
-/* TEAM GRID */
-.team {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-top: 30px;
-}
-
-.member {
-    background: rgba(0,0,0,0.6);
-    padding: 15px;
-    border-radius: 12px;
-    text-align: center;
-    transition: 0.3s;
-}
-
-.member:hover {
-    transform: translateY(-5px);
-    background: rgba(0,0,0,0.75);
-}
-
-.member img {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
-    border: 2px solid #ffd700;
-}
-
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 20px;
-    background: rgba(0,0,0,0.6);
-    margin-top: 40px;
-}
-
-/* =========================
-   RESPONSIVE DESIGN
-========================= */
-
-/* TABLET */
-@media (max-width: 1024px) {
-    .team {
-        grid-template-columns: repeat(2, 1fr);
+    body {
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      min-height: 100vh;
     }
-}
 
-/* MOBILE */
-@media (max-width: 768px) {
+    .overlay {
+      position: fixed;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: -1;
+    }
 
+    /* NAVBAR */
     .navbar {
-        flex-direction: column;
-        gap: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: rgba(0,0,0,0.6);
+      position: relative;
     }
 
+    /* LOGO */
+    .logo img {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #ffd700;
+    }
+
+    /* NAV LINKS */
     .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #ffd700;
+    }
+
+    /* LOGOUT BUTTON */
+    .logout-btn {
+      background: #ff3b30;
+      color: white !important;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.3s;
+      display: inline-block;
+    }
+
+    .logout-btn:hover {
+      background: #c70015;
+      transform: scale(1.05);
+    }
+
+    /* HAMBURGER MENU */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 4px 0;
+    }
+
+    /* ABOUT SECTION */
+    .about {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
     }
 
     .about-content h1 {
-        font-size: 28px;
+      font-size: 42px;
+      margin-bottom: 15px;
+      text-align: center;
     }
 
     .about-content p {
-        font-size: 16px;
-        padding: 0 10px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      font-size: 18px;
+      line-height: 1.6;
     }
 
+    /* TEAM GRID */
     .team {
-        grid-template-columns: 1fr;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .member {
+      background: rgba(0,0,0,0.6);
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .member:hover {
+      transform: translateY(-5px);
+      background: rgba(0,0,0,0.75);
     }
 
     .member img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border: 2px solid #ffd700;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.6);
+      margin-top: 40px;
+    }
+
+    /* =========================
+       RESPONSIVE DESIGN
+    ========================= */
+    @media (max-width: 1024px) {
+      .team {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background: rgba(0,0,0,0.9);
+        flex-direction: column;
+        width: 200px;
+        display: none;
+        padding: 15px;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .about-content h1 {
+        font-size: 28px;
+      }
+
+      .about-content p {
+        font-size: 16px;
+        padding: 0 10px;
+      }
+
+      .team {
+        grid-template-columns: 1fr;
+      }
+
+      .member img {
         width: 80px;
         height: 80px;
+      }
     }
-}
-</style>
+  </style>
 </head>
-
 <body>
 
-<div class="overlay"></div>
+  <div class="overlay"></div>
 
-<!-- NAVBAR -->
-<nav class="navbar">
+  <!-- NAVBAR -->
+  <nav class="navbar">
     <a href="index.html" class="logo">
-        <img src="logo.png" alt="Nona Plan Logo">
+      <img src="logo.png" alt="Nona Plan Logo">
     </a>
 
-    <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="planner.html">Planner</a></li>
-        <li><a href="timer.html">Timer</a></li>
-        <li><a href="analytics.html">Analytics</a></li>
-        <li><a href="resources.html">Resources</a></li>
-        <li><a href="about.html" class="active">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="#" class="logout-btn" onclick="logout()">Logout</a></li>
-    </ul>
-</nav>
-
-<div class="overlay"></div>
-
-<!-- ABOUT -->
-<section class="about">
-    <div class="about-content">
-        <h1>About Nona Plan</h1>
-        <p>
-            Nona Plan is a study and exam companion designed for Grade 12 students.
-            It helps organize study schedules, track progress, and access learning resources.
-        </p>
-
-        <h2 style="text-align:center; margin-top:40px;">Our Team</h2>
-
-        <div class="team">
-
-            <div class="member">
-                <img src="khalid.jpg">
-                <p><strong>Khalid Ibrahim</strong><br>Project Leader</p>
-            </div>
-
-            <div class="member">
-                <img src="tesnim.jpg">
-                <p><strong>Tesnim Nasir</strong><br>Planner Developer</p>
-            </div>
-
-            <div class="member">
-                <img src="nur.jpg">
-                <p><strong>Nur Alawis</strong><br>Timer Developer</p>
-            </div>
-
-            <div class="member">
-                <img src="halewya.jpg">
-                <p><strong>Halewya Aswab</strong><br>Analytics Developer</p>
-            </div>
-
-            <div class="member">
-                <img src="merwan.jpg">
-                <p><strong>Merwan Ahmed</strong><br>Resources Manager</p>
-            </div>
-
-            <div class="member">
-                <img src="ibrahim.jpg">
-                <p><strong>Ibrahim Mahbub</strong><br>PDF Organizer</p>
-            </div>
-
-            <div class="member">
-                <img src="hanan.jpg">
-                <p><strong>Hanan Mujib</strong><br>UI/UX Designer</p>
-            </div>
-
-            <div class="member">
-                <img src="yusuf.jpg">
-                <p><strong>Yusuf Sherif</strong><br>Testing & CSS</p>
-            </div>
-
-            <div class="member">
-                <img src="reyan.jpg">
-                <p><strong>Reyan Abdu</strong><br>Testing & CSS</p>
-            </div>
-
-        </div>
+    <!-- HAMBURGER -->
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
-</section>
 
-<footer>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="planner.html">Planner</a></li>
+      <li><a href="analytics.html">Analytics</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="#" class="logout-btn" onclick="logout()">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="about-content">
+      <h1>About Nona Plan</h1>
+      <p>
+        Nona Plan is a study and exam companion designed for Grade 12 students.
+        It helps organize study schedules, track progress, and access learning resources.
+      </p>
+
+      <h2 style="text-align:center; margin-top:40px;">Our Team</h2>
+
+      <div class="team">
+        <!-- Team members here -->
+      </div>
+    </div>
+  </section>
+
+  <footer>
     <p>&copy; 2026 Nona Plan - Developed by Grade 12 Students</p>
-</footer>
+  </footer>
 
-<script>
-function logout() {
-    localStorage.removeItem("loggedIn");
-    window.location.href = "login.html";
-}
-</script>
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("show");
+    }
+
+    function logout() {
+      localStorage.removeItem("loggedIn");
+      window.location.href = "login.html";
+    }
+  </script>
 
 </body>
 </html>
