@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact - Nona Plan</title>
+
 <style>
-/* ===== GLOBAL STYLES ===== */
 * {
   margin: 0;
   padding: 0;
@@ -20,16 +20,15 @@ body {
   min-height: 100vh;
 }
 
-/* ===== OVERLAY ===== */
 .overlay {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.35);
-  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  z-index: -1;
 }
 
-/* ===== NAVBAR ===== */
+/* NAVBAR */
 nav.navbar {
   display: flex;
   justify-content: space-between;
@@ -50,39 +49,58 @@ nav .logo {
 nav .logo img {
   width: 50px;
   height: 50px;
-  border-radius: 50%; /* circular logo */
+  border-radius: 50%;
 }
 
-nav .nav-links {
+nav ul {
   list-style: none;
   display: flex;
   gap: 20px;
 }
 
-nav .nav-links a {
+nav ul li a {
   color: #fff;
   text-decoration: none;
+  font-weight: bold;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: #ffd700;
+}
+
+/* 🔴 LOGOUT BUTTON (UNIFIED STYLE) */
+.logout-btn {
+  background: #ff3b30;
+  color: white !important;
+  padding: 8px 14px;
+  border-radius: 8px;
   font-weight: bold;
   transition: 0.3s;
 }
 
-nav .nav-links a:hover,
-nav .nav-links a.active {
-  color: #ffd700;
+.logout-btn:hover {
+  background: #c70015;
+  transform: scale(1.05);
 }
 
-/* ===== CONTACT FORM ===== */
+/* USER */
+.user-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* CONTACT */
 .contact {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 100px 20px;
-  position: relative;
-  z-index: 2;
+  padding: 80px 20px;
 }
 
 .contact-content {
-  background: rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.85);
   padding: 35px;
   border-radius: 12px;
   max-width: 450px;
@@ -100,30 +118,23 @@ nav .nav-links a.active {
   color: #ddd;
 }
 
-.contact-content input,
-.contact-content textarea {
+input, textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
   border-radius: 6px;
   border: none;
-  font-size: 14px;
 }
 
-.contact-content button {
+button {
   width: 100%;
   padding: 12px;
   border-radius: 6px;
   border: none;
   background: #ffd700;
-  color: #000;
+  color: black;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.3s;
-}
-
-.contact-content button:hover {
-  background: #e6c200;
 }
 
 #statusMsg {
@@ -131,83 +142,123 @@ nav .nav-links a.active {
   font-weight: bold;
 }
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 footer {
   text-align: center;
   padding: 15px;
   background: rgba(0,0,0,0.7);
   margin-top: 40px;
-  color: #fff;
 }
 </style>
 </head>
+
 <body>
 
 <div class="overlay"></div>
 
 <!-- NAVBAR -->
 <nav class="navbar">
+
   <div class="logo">
-    <img src="logo.png" alt="Nona Plan Logo">
+    <img src="logo.png">
     <span>Nona Plan</span>
   </div>
-  <ul class="nav-links">
+
+  <ul>
     <li><a href="index.html">Home</a></li>
     <li><a href="planner.html">Planner</a></li>
     <li><a href="analytics.html">Analytics</a></li>
     <li><a href="resources.html">Resources</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html" class="active">Contact</a></li>
+
+    <li><a href="#" class="logout-btn" onclick="logout()">Logout</a></li>
   </ul>
+
+  <div class="user-box">
+    <span id="userEmail"></span>
+  </div>
+
 </nav>
 
-<!-- CONTACT FORM -->
+<!-- CONTACT -->
 <section class="contact">
   <div class="contact-content">
+
     <h1>Contact Us</h1>
     <p>Send us your questions or feedback!</p>
+
     <form id="contactForm">
+      <input type="hidden" name="access_key" value="afc2f4f0-ff3a-4a49-882d-bebfeb008d76">
+      <input type="checkbox" name="botcheck" style="display:none;">
+
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="email" name="email" placeholder="Your Email" required>
       <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+
       <button type="submit">Send Message</button>
     </form>
+
     <p id="statusMsg"></p>
+
   </div>
 </section>
 
 <footer>
-  <p>&copy; 2026 Nona Plan - Developed by Grade 12 Students</p>
+  <p>&copy; 2026 Nona Plan - Developed by Students</p>
 </footer>
 
-<!-- ===== EMAILJS SCRIPT ===== -->
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script>
-  // Initialize EmailJS
-  (function(){
-    emailjs.init("YOUR_USER_ID"); // <-- replace with your EmailJS user ID
-  })();
+// 🔐 LOGIN CHECK
+const user = localStorage.getItem("loggedIn");
 
-  const form = document.getElementById("contactForm");
-  const statusMsg = document.getElementById("statusMsg");
-  const button = form.querySelector("button");
+if(!user){
+  window.location.href = "login.html";
+}
 
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
-    statusMsg.textContent = "⏳ Sending message...";
-    button.disabled = true;
+// SHOW USER
+document.getElementById("userEmail").textContent = user;
 
-    emailjs.sendForm("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID", this)
-      .then(() => {
-        statusMsg.textContent = "✅ Message sent successfully!";
-        form.reset();
-        button.disabled = false;
-      }, (err) => {
-        console.error(err);
-        statusMsg.textContent = "❌ Failed to send message. Try again.";
-        button.disabled = false;
-      });
-  });
+// LOGOUT
+function logout(){
+  localStorage.removeItem("loggedIn");
+  window.location.href = "login.html";
+}
+
+// FORM SUBMIT
+const form = document.getElementById("contactForm");
+const statusMsg = document.getElementById("statusMsg");
+const button = form.querySelector("button");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+
+  statusMsg.textContent = "⏳ Sending...";
+  button.disabled = true;
+
+  try {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      statusMsg.textContent = "✅ Message sent successfully!";
+      form.reset();
+    } else {
+      statusMsg.textContent = "❌ " + data.message;
+    }
+
+  } catch (error) {
+    statusMsg.textContent = "❌ Something went wrong.";
+  }
+
+  button.disabled = false;
+});
 </script>
 
 </body>
