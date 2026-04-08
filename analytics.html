@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,6 +21,7 @@ body {
     color: white;
 }
 
+/* OVERLAY */
 .overlay {
     position: fixed;
     top: 0;
@@ -32,13 +32,16 @@ body {
     z-index: -1;
 }
 
+/* NAVBAR */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 60px;
+    flex-wrap: wrap;
 }
 
+/* LOGO */
 nav .logo {
     display: flex;
     align-items: center;
@@ -57,11 +60,13 @@ nav .logo img {
     border: 2px solid #ffd700;
 }
 
+/* NAV LINKS */
 .nav-links {
     list-style: none;
     display: flex;
     gap: 25px;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -76,7 +81,7 @@ nav .logo img {
     color: #ffd700;
 }
 
-/* 🔴 LOGOUT BUTTON */
+/* LOGOUT */
 .logout-btn {
     background: #ff3b30;
     color: white !important;
@@ -92,9 +97,10 @@ nav .logo img {
     transform: scale(1.05);
 }
 
+/* HEADER */
 .header {
     text-align: center;
-    padding: 50px 20px;
+    padding: 60px 20px 30px;
 }
 
 .header h1 {
@@ -104,8 +110,10 @@ nav .logo img {
 
 .header p {
     font-size: 20px;
+    opacity: 0.9;
 }
 
+/* SECTIONS */
 .section {
     max-width: 1100px;
     margin: 40px auto;
@@ -119,6 +127,7 @@ nav .logo img {
     color: #ffd700;
 }
 
+/* GRID */
 .grid {
     display: flex;
     flex-wrap: wrap;
@@ -126,6 +135,7 @@ nav .logo img {
     justify-content: center;
 }
 
+/* CARDS */
 .card {
     background: rgba(0,0,0,0.6);
     padding: 20px;
@@ -140,11 +150,74 @@ nav .logo img {
     background: rgba(0,0,0,0.75);
 }
 
+/* FOOTER */
 footer {
     text-align: center;
     padding: 20px;
     margin-top: 40px;
     background: rgba(0,0,0,0.5);
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+/* TABLET */
+@media (max-width: 1024px) {
+    .navbar {
+        padding: 20px 30px;
+    }
+
+    .header h1 {
+        font-size: 42px;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        padding: 15px 20px;
+    }
+
+    .nav-links {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .header h1 {
+        font-size: 32px;
+    }
+
+    .header p {
+        font-size: 16px;
+    }
+
+    .section {
+        margin: 25px 10px;
+        padding: 20px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 480px) {
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .header h1 {
+        font-size: 26px;
+    }
 }
 </style>
 </head>
@@ -153,6 +226,7 @@ footer {
 
 <div class="overlay"></div>
 
+<!-- NAVBAR -->
 <nav class="navbar">
     <a href="index.html" class="logo">
         <img src="logo.png" alt="Logo">
@@ -167,16 +241,17 @@ footer {
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
 
-        <!-- 🔴 LOGOUT -->
         <li><a href="#" class="logout-btn" onclick="logout()">Logout</a></li>
     </ul>
 </nav>
 
+<!-- HEADER -->
 <section class="header">
     <h1>📊 Study Analytics</h1>
     <p>Your real study activity from Study Mode</p>
 </section>
 
+<!-- OVERVIEW -->
 <div class="section">
     <h2>Overview</h2>
     <div class="grid">
@@ -186,23 +261,23 @@ footer {
     </div>
 </div>
 
+<!-- SUBJECTS -->
 <div class="section">
     <h2>Subjects Breakdown</h2>
     <div class="grid" id="subjectGrid"></div>
 </div>
 
+<!-- FOOTER -->
 <footer>
     <p>© 2026 Nona Plan | Designed for students</p>
 </footer>
 
 <script>
-// 🔴 LOGOUT FUNCTION
 function logout() {
     localStorage.removeItem("loggedIn");
     window.location.href = "login.html";
 }
 
-// LOAD DATA
 let studySessions = JSON.parse(localStorage.getItem("studySessions")) || [];
 
 // TOTAL TIME
@@ -216,7 +291,7 @@ document.getElementById("totalSessions").textContent = studySessions.length;
 let avg = studySessions.length ? Math.round(totalMinutes / studySessions.length) : 0;
 document.getElementById("avgSession").textContent = avg + " min";
 
-// SUBJECT BREAKDOWN
+// SUBJECTS
 let subjectTotals = {};
 
 studySessions.forEach(s => {
@@ -224,7 +299,6 @@ studySessions.forEach(s => {
     subjectTotals[subject] = (subjectTotals[subject] || 0) + (s.duration || 0);
 });
 
-// RENDER SUBJECTS
 let subjectGrid = document.getElementById("subjectGrid");
 subjectGrid.innerHTML = "";
 
