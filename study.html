@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,6 +52,7 @@ body {
     list-style: none;
     display: flex;
     gap: 25px;
+    align-items: center;
 }
 
 .nav-links a {
@@ -63,6 +63,22 @@ body {
 
 .nav-links a:hover {
     color: #ffd700;
+}
+
+/* 🔴 LOGOUT BUTTON */
+.logout-btn {
+    background: #ff3b30;
+    color: white !important;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.logout-btn:hover {
+    background: #c70015;
+    transform: scale(1.05);
 }
 
 /* TIMER */
@@ -191,6 +207,9 @@ body {
   <ul class="nav-links">
     <li><a href="resources.html">Back to Resources</a></li>
     <li><a onclick="toggleFocus()">Focus Mode</a></li>
+
+    <!-- 🔴 LOGOUT -->
+    <li><a href="#" class="logout-btn" onclick="logout()">Logout</a></li>
   </ul>
 </nav>
 
@@ -224,6 +243,12 @@ body {
 </footer>
 
 <script>
+// 🔴 LOGOUT FUNCTION
+function logout() {
+    localStorage.removeItem("loggedIn");
+    window.location.href = "login.html";
+}
+
 // LOAD RESOURCE
 const params = new URLSearchParams(window.location.search);
 const file = params.get("file");
@@ -271,7 +296,7 @@ function resetTimer() {
     updateDisplay();
 }
 
-// SAVE SESSION (✅ FIXED)
+// SAVE SESSION
 function finishStudy() {
     pauseTimer();
     if (elapsedSeconds < 10) return alert("Too short!");
@@ -281,7 +306,7 @@ function finishStudy() {
     sessions.push({
         subject: params.get("subject") || "Unknown",
         resource: file || video,
-        duration: Math.floor(elapsedSeconds / 60), // ✅ correct property
+        duration: Math.floor(elapsedSeconds / 60),
         date: new Date().toISOString()
     });
 
@@ -298,7 +323,7 @@ function toggleFocus() {
     document.getElementById("exitFocusBtn").classList.toggle("show");
 }
 
-// POSITION UNDER TIMER
+// POSITION VIEWER
 const viewerBox = document.getElementById("viewerBox");
 
 function positionViewer() {
