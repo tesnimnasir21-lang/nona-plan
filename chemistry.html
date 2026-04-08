@@ -36,7 +36,7 @@ body{
 }
 
 /* =========================
-   NAVBAR (ABOUT PAGE STYLE)
+   NAVBAR (ABOUT PAGE STYLE FIXED)
 ========================= */
 .navbar {
     display: flex;
@@ -46,14 +46,15 @@ body{
     flex-wrap: wrap;
 }
 
-/* LOGO (IMAGE STYLE LIKE ABOUT PAGE) */
+/* LOGO */
 .logo {
     display: flex;
     align-items: center;
     gap: 12px;
+    text-decoration:none;
 }
 
-nav .logo img {
+.logo img {
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -82,7 +83,7 @@ nav .logo img {
     color: #ffd700;
 }
 
-/* ACTIVE */
+/* ACTIVE LINK */
 .nav-links li a.active {
     color: #ffd700;
 }
@@ -167,7 +168,7 @@ section h2{
 }
 
 /* =========================
-   RESPONSIVE DESIGN
+   RESPONSIVE DESIGN (IMPROVED)
 ========================= */
 
 /* TABLET */
@@ -185,6 +186,7 @@ section h2{
         align-items:center;
         gap:15px;
         padding:15px 20px;
+        text-align:center;
     }
 
     .nav-links{
@@ -214,7 +216,7 @@ section h2{
 
 <div class="overlay"></div>
 
-<!-- NAVBAR (ABOUT STYLE) -->
+<!-- NAVBAR -->
 <nav class="navbar">
 
   <a href="index.html" class="logo">
@@ -228,7 +230,6 @@ section h2{
     <li><a href="resources.html">Resources</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html">Contact</a></li>
-
     <li><a href="#" class="logout-btn">Logout</a></li>
   </ul>
 
@@ -242,7 +243,6 @@ section h2{
     <p>Click a resource to open and start your study session.</p>
   </header>
 
-  <!-- NOTES -->
   <section>
     <h2>📘 Notes</h2>
     <div class="resource-list">
@@ -260,7 +260,6 @@ section h2{
     </div>
   </section>
 
-  <!-- PAST PAPERS -->
   <section>
     <h2>📝 Past Papers</h2>
     <div class="resource-list">
@@ -273,7 +272,6 @@ section h2{
     </div>
   </section>
 
-  <!-- ASSIGNMENTS -->
   <section>
     <h2>📂 Assignments</h2>
     <div class="resource-list">
@@ -288,7 +286,6 @@ section h2{
 
 </main>
 
-<!-- FOOTER -->
 <footer class="footer">
   <p>© 2026 Nona Plan | Designed for students</p>
 </footer>
