@@ -28,7 +28,7 @@
     }
 
     /* =========================
-       NAVBAR (Unified style)
+       NAVBAR (Home page style)
     ========================= */
     .navbar {
       display: flex;
@@ -42,9 +42,9 @@
     }
 
     /* LOGO */
-    nav .logo img {
-      width: 60px;
-      height: 60px;
+    .logo img {
+      width: 55px;
+      height: 55px;
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid #ffd700;
@@ -52,21 +52,20 @@
 
     /* NAV LINKS */
     .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 15px;
       list-style: none;
+      display: flex;
+      gap: 20px;
     }
 
-    .nav-links li a {
-      color: #fff;
+    .nav-links a {
       text-decoration: none;
+      color: white;
       font-weight: bold;
       transition: 0.3s;
     }
 
-    .nav-links li a:hover,
-    .nav-links li a.active {
+    .nav-links a:hover,
+    .nav-links a.active {
       color: #ffd700;
     }
 
@@ -93,6 +92,20 @@
       gap: 10px;
       color: #ffd700;
       font-weight: bold;
+    }
+
+    /* HAMBURGER MENU */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 4px 0;
     }
 
     /* CONTACT */
@@ -156,14 +169,23 @@
 
     /* ================= RESPONSIVE ================= */
     @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        gap: 10px;
+      .hamburger {
+        display: flex;
       }
 
       .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background: rgba(0,0,0,0.9);
+        flex-direction: column;
+        width: 200px;
+        display: none;
+        padding: 15px;
+      }
+
+      .nav-links.show {
+        display: flex;
       }
 
       .contact {
@@ -190,7 +212,14 @@
       <img src="logo.png" alt="Nona Plan Logo">
     </a>
 
-    <ul class="nav-links">
+    <!-- HAMBURGER -->
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Home</a></li>
       <li><a href="planner.html">Planner</a></li>
       <li><a href="analytics.html">Analytics</a></li>
@@ -231,6 +260,11 @@
   </footer>
 
   <script>
+    // MENU TOGGLE
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("show");
+    }
+
     // LOGIN CHECK
     const user = localStorage.getItem("loggedIn");
     if(!user){
