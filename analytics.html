@@ -37,24 +37,29 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 60px;
+    padding: 18px 60px;
     flex-wrap: wrap;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 /* LOGO */
 nav .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-size: 28px;
+    gap: 10px;
+    font-size: 22px;
     font-weight: bold;
     color: white;
     text-decoration: none;
 }
 
 nav .logo img {
-    width: 55px;
-    height: 55px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #ffd700;
@@ -64,7 +69,7 @@ nav .logo img {
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 25px;
+    gap: 22px;
     align-items: center;
     flex-wrap: wrap;
 }
@@ -74,26 +79,28 @@ nav .logo img {
     color: white;
     font-size: 16px;
     transition: 0.3s;
+    padding: 6px 10px;
+    border-radius: 6px;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
     color: #ffd700;
+    background: rgba(255, 215, 0, 0.1);
 }
 
-/* LOGOUT */
+/* LOGOUT BUTTON (MORE VISIBLE) */
 .logout-btn {
-    background: #ff3b30;
+    background: #ff2d2d;
     color: white !important;
     padding: 8px 14px;
-    border-radius: 8px;
+    border-radius: 10px;
     font-weight: bold;
-    transition: 0.3s;
-    display: inline-block;
+    box-shadow: 0 0 10px rgba(255,0,0,0.4);
 }
 
 .logout-btn:hover {
-    background: #c70015;
+    background: #c40000;
     transform: scale(1.05);
 }
 
@@ -158,14 +165,12 @@ footer {
     background: rgba(0,0,0,0.5);
 }
 
-/* =========================
-   RESPONSIVE DESIGN
-========================= */
+/* ================= RESPONSIVE ================= */
 
 /* TABLET */
 @media (max-width: 1024px) {
     .navbar {
-        padding: 20px 30px;
+        padding: 15px 25px;
     }
 
     .header h1 {
@@ -179,13 +184,13 @@ footer {
     .navbar {
         flex-direction: column;
         align-items: center;
-        gap: 15px;
-        padding: 15px 20px;
+        gap: 12px;
+        padding: 15px;
     }
 
     .nav-links {
         justify-content: center;
-        gap: 12px;
+        gap: 10px;
     }
 
     .header h1 {
@@ -197,13 +202,13 @@ footer {
     }
 
     .section {
-        margin: 25px 10px;
-        padding: 20px;
+        margin: 20px 10px;
+        padding: 18px;
     }
 
     .card {
         width: 100%;
-        max-width: 300px;
+        max-width: 320px;
     }
 }
 
@@ -212,7 +217,7 @@ footer {
 
     .nav-links {
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
     }
 
     .header h1 {
@@ -240,7 +245,6 @@ footer {
         <li><a href="resources.html">Resources</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
-
         <li><a href="#" class="logout-btn" onclick="logout()">Logout</a></li>
     </ul>
 </nav>
@@ -280,18 +284,14 @@ function logout() {
 
 let studySessions = JSON.parse(localStorage.getItem("studySessions")) || [];
 
-// TOTAL TIME
 let totalMinutes = studySessions.reduce((sum, s) => sum + (s.duration || 0), 0);
 document.getElementById("totalTime").textContent = totalMinutes + " min";
 
-// TOTAL SESSIONS
 document.getElementById("totalSessions").textContent = studySessions.length;
 
-// AVERAGE
 let avg = studySessions.length ? Math.round(totalMinutes / studySessions.length) : 0;
 document.getElementById("avgSession").textContent = avg + " min";
 
-// SUBJECTS
 let subjectTotals = {};
 
 studySessions.forEach(s => {
