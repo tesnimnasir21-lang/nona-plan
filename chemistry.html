@@ -7,15 +7,8 @@
 <title>Nona Plan - Chemistry</title>
 
 <style>
-nav .logo img {
-    width: 60px;        /* adjust size if needed */
-    height: 60px;       /* same as width */
-    border-radius: 50%; /* makes it circular */
-    object-fit: cover;  /* keeps the image from stretching */
-    border: 2px solid #ffd700; /* optional border */
-}
 
-/* ===== RESET + FONT ===== */
+/* ===== RESET ===== */
 *{
     margin:0;
     padding:0;
@@ -42,28 +35,71 @@ body{
     z-index:-1;
 }
 
-/* ===== NAVBAR ===== */
-.navbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 60px;
+/* =========================
+   NAVBAR (ABOUT PAGE STYLE)
+========================= */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    flex-wrap: wrap;
 }
 
-.nav-links{
-    list-style:none;
-    display:flex;
-    gap:25px;
+/* LOGO (IMAGE STYLE LIKE ABOUT PAGE) */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.nav-links a{
-    text-decoration:none;
-    color:white;
-    transition:0.3s;
+nav .logo img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffd700;
 }
 
-.nav-links a:hover{
-    color:#ffd700;
+/* NAV LINKS */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+/* LINKS */
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #ffd700;
+}
+
+/* ACTIVE */
+.nav-links li a.active {
+    color: #ffd700;
+}
+
+/* LOGOUT BUTTON */
+.logout-btn {
+    background: #ff3b30;
+    color: white !important;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: #c70015;
+    transform: scale(1.05);
 }
 
 /* ===== MAIN ===== */
@@ -85,7 +121,7 @@ section h2{
     margin-bottom:10px;
 }
 
-/* ===== RESOURCE GRID ===== */
+/* ===== GRID ===== */
 .resource-list{
     display:grid;
     grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
@@ -104,7 +140,7 @@ section h2{
     transform:translateY(-5px);
 }
 
-/* ===== BUTTON ===== */
+/* BUTTON */
 .btn{
     display:inline-block;
     margin-top:10px;
@@ -122,7 +158,7 @@ section h2{
     transform:scale(1.05);
 }
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 .footer{
     text-align:center;
     padding:20px;
@@ -130,11 +166,43 @@ section h2{
     background:rgba(0,0,0,0.5);
 }
 
-/* ===== RESPONSIVE ===== */
-@media(max-width:768px){
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+/* TABLET */
+@media (max-width: 1024px){
+    .navbar{
+        padding:20px 30px;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 768px){
+
     .navbar{
         flex-direction:column;
-        align-items:flex-start;
+        align-items:center;
+        gap:15px;
+        padding:15px 20px;
+    }
+
+    .nav-links{
+        justify-content:center;
+        gap:12px;
+    }
+
+    .resource-card{
+        padding:15px;
+    }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 480px){
+
+    .nav-links{
+        flex-direction:column;
+        gap:10px;
     }
 }
 
@@ -146,11 +214,12 @@ section h2{
 
 <div class="overlay"></div>
 
+<!-- NAVBAR (ABOUT STYLE) -->
 <nav class="navbar">
-  <div class="logo">
-    <h2>📘 Nona Plan</h2>
-    <p>Your Smart Study Companion</p>
-  </div>
+
+  <a href="index.html" class="logo">
+    <img src="logo.png" alt="Nona Plan Logo">
+  </a>
 
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
@@ -159,9 +228,13 @@ section h2{
     <li><a href="resources.html">Resources</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html">Contact</a></li>
+
+    <li><a href="#" class="logout-btn">Logout</a></li>
   </ul>
+
 </nav>
 
+<!-- MAIN -->
 <main class="resources-container">
 
   <header class="page-header">
@@ -193,14 +266,12 @@ section h2{
     <div class="resource-list">
 
       <div class="resource-card">
-        <h3>sample Exam Paper</h3>
+        <h3>Sample Exam Paper</h3>
         <a href="study.html?subject=Chemistry&file=chemistry/pastpapers/paper.pdf" class="btn">Open PDF</a>
       </div>
 
     </div>
   </section>
-
- 
 
   <!-- ASSIGNMENTS -->
   <section>
@@ -217,6 +288,7 @@ section h2{
 
 </main>
 
+<!-- FOOTER -->
 <footer class="footer">
   <p>© 2026 Nona Plan | Designed for students</p>
 </footer>
