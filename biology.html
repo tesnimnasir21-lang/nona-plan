@@ -7,15 +7,7 @@
 <title>Nona Plan - Biology</title>
 
 <style>
-nav .logo img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #ffd700;
-}
-
-/* ===== RESET + FONT ===== */
+/* RESET */
 *{
     margin:0;
     padding:0;
@@ -23,7 +15,7 @@ nav .logo img {
     font-family:'Segoe UI', sans-serif;
 }
 
-/* ===== BACKGROUND ===== */
+/* BACKGROUND */
 body{
     background-image:url('background.jpg');
     background-size:cover;
@@ -33,7 +25,7 @@ body{
     color:white;
 }
 
-/* ===== OVERLAY ===== */
+/* OVERLAY */
 .overlay{
     position:fixed;
     width:100%;
@@ -42,61 +34,100 @@ body{
     z-index:-1;
 }
 
-/* ===== NAVBAR ===== */
+/* NAVBAR */
 .navbar{
     display:flex;
     justify-content:space-between;
     align-items:center;
     padding:20px 60px;
+    flex-wrap:wrap;
 }
 
+/* LOGO */
+nav .logo img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffd700;
+}
+
+.logo h2 {
+    font-size: 22px;
+}
+
+.logo p {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+/* NAV LINKS */
 .nav-links{
     list-style:none;
     display:flex;
-    gap:25px;
+    gap:20px;
+    flex-wrap:wrap;
+    align-items:center;
 }
 
 .nav-links a{
     text-decoration:none;
     color:white;
     transition:0.3s;
+    font-size:15px;
 }
 
 .nav-links a:hover{
     color:#ffd700;
 }
 
-/* ===== MAIN ===== */
+/* MAIN CONTAINER */
 .resources-container{
     padding:40px 20px;
 }
 
+/* HEADER */
 .page-header{
     text-align:center;
-    margin-bottom:30px;
-}
-
-/* ===== SECTIONS ===== */
-section{
     margin-bottom:40px;
 }
 
-section h2{
+.page-header h1{
+    font-size:40px;
     margin-bottom:10px;
 }
 
-/* ===== RESOURCE GRID ===== */
+.page-header p{
+    opacity:0.9;
+}
+
+/* SECTIONS */
+section{
+    margin-bottom:40px;
+    max-width:1100px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+section h2{
+    margin-bottom:15px;
+    color:#ffd700;
+}
+
+/* GRID */
 .resource-list{
     display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+    grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
     gap:20px;
 }
 
+/* CARDS */
 .resource-card{
     background:rgba(0,0,0,0.6);
     padding:20px;
     border-radius:12px;
     transition:0.3s;
+    text-align:center;
 }
 
 .resource-card:hover{
@@ -104,7 +135,7 @@ section h2{
     transform:translateY(-5px);
 }
 
-/* ===== BUTTON ===== */
+/* BUTTON */
 .btn{
     display:inline-block;
     margin-top:10px;
@@ -122,7 +153,7 @@ section h2{
     transform:scale(1.05);
 }
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 .footer{
     text-align:center;
     padding:20px;
@@ -130,14 +161,59 @@ section h2{
     background:rgba(0,0,0,0.5);
 }
 
-/* ===== RESPONSIVE ===== */
-@media(max-width:768px){
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+/* TABLET */
+@media (max-width: 1024px){
+    .navbar{
+        padding:20px 30px;
+    }
+
+    .page-header h1{
+        font-size:32px;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 768px){
+
     .navbar{
         flex-direction:column;
-        align-items:flex-start;
+        align-items:center;
+        gap:15px;
+        padding:15px 20px;
     }
-    iframe {
-        height: 200px; /* smaller height for mobile */
+
+    .nav-links{
+        justify-content:center;
+        gap:12px;
+    }
+
+    .page-header h1{
+        font-size:26px;
+    }
+
+    .page-header p{
+        font-size:14px;
+    }
+
+    .resource-card{
+        padding:15px;
+    }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 480px){
+
+    .nav-links{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .page-header h1{
+        font-size:22px;
     }
 }
 </style>
@@ -148,7 +224,9 @@ section h2{
 
 <div class="overlay"></div>
 
+<!-- NAVBAR -->
 <nav class="navbar">
+
   <div class="logo">
     <h2>📘 Nona Plan</h2>
     <p>Your Smart Study Companion</p>
@@ -162,8 +240,10 @@ section h2{
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
+
 </nav>
 
+<!-- MAIN -->
 <main class="resources-container">
 
   <header class="page-header">
@@ -196,13 +276,11 @@ section h2{
 
       <div class="resource-card">
         <h3>Sample Exam Paper</h3>
-        <a href="study.html?subject=Biology&file=biology/pastpapers//Unit wise biology question.pdf" class="btn">Open PDF</a>
+        <a href="study.html?subject=Biology&file=biology/pastpapers/Unit wise biology question.pdf" class="btn">Open PDF</a>
       </div>
 
     </div>
   </section>
-
- 
 
   <!-- ASSIGNMENTS -->
   <section>
@@ -211,7 +289,7 @@ section h2{
 
       <div class="resource-card">
         <h3>Cell Biology Worksheet</h3>
-        <a href="study.html?subject=Biology&file=biology/assignments/🧬 Cell Biology.pdf" class="btn">Open PDF</a>
+        <a href="study.html?subject=Biology&file=biology/assignments/Cell Biology.pdf" class="btn">Open PDF</a>
       </div>
 
     </div>
@@ -219,6 +297,7 @@ section h2{
 
 </main>
 
+<!-- FOOTER -->
 <footer class="footer">
   <p>© 2026 Nona Plan | Designed for students</p>
 </footer>
