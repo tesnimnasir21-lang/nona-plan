@@ -4,51 +4,193 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nona Plan - Home</title>
-<link rel="stylesheet" href="style.css">
 
 <style>
-nav .logo img {
-    width: 60px;
-    height: 60px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    min-height: 100vh;
+}
+
+/* OVERLAY */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    z-index: -1;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: rgba(0,0,0,0.6);
+    position: relative;
+}
+
+.logo img {
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #ffd700;
 }
 
-/* RESET NAV */
-.nav-links{
-    list-style:none;
-    display:flex;
-    gap:25px;
-    align-items:center;
+/* NAV LINKS */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
 }
 
-/* LINKS */
-.nav-links a{
-    text-decoration:none;
-    color:white;
-    transition:0.3s;
-    font-weight:bold;
-}
-
-.nav-links a:hover{
-    color:#ffd700;
-}
-
-/* 🔴 LOGOUT BUTTON (CONSISTENT STYLE) */
-.logout-btn {
-    background: #ff3b30;
-    color: white !important;
-    padding: 8px 14px;
-    border-radius: 8px;
+.nav-links a {
+    text-decoration: none;
+    color: white;
     font-weight: bold;
     transition: 0.3s;
-    display: inline-block;
 }
 
-.logout-btn:hover {
-    background: #c70015;
-    transform: scale(1.05);
+.nav-links a:hover,
+.nav-links a.active {
+    color: #ffd700;
+}
+
+/* HAMBURGER */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 4px 0;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 120px 20px 80px;
+}
+
+.hero h1 {
+    font-size: 48px;
+}
+
+.hero p {
+    font-size: 20px;
+    margin: 15px 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #ffd700;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+/* FEATURES */
+.features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 50px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.feature-card {
+    background: rgba(0,0,0,0.6);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    background: rgba(0,0,0,0.8);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0,0,0,0.6);
+    margin-top: 40px;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+/* TABLET */
+@media (max-width: 1024px) {
+    .features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background: rgba(0,0,0,0.9);
+        flex-direction: column;
+        width: 200px;
+        display: none;
+        padding: 15px;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .hero {
+        padding: 100px 15px 60px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
 }
 </style>
 </head>
@@ -59,30 +201,33 @@ nav .logo img {
 
 <!-- NAVBAR -->
 <nav class="navbar">
+
     <a href="index.html" class="logo">
-        <img src="logo.png" alt="Nona Plan Logo">
+        <img src="logo.png" alt="Logo">
     </a>
 
-    <ul class="nav-links">
+    <!-- HAMBURGER -->
+    <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <ul class="nav-links" id="navLinks">
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="planner.html">Planner</a></li>
         <li><a href="analytics.html">Analytics</a></li>
         <li><a href="resources.html">Resources</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
-
-        <!-- 🔴 LOGOUT -->
-        <li><a href="#" class="logout-btn" onclick="logout()">Logout</a></li>
     </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-    <div class="hero-content">
-        <h1>Welcome to Nona Plan</h1>
-        <p>Your Study & Exam Companion</p>
-        <a href="#" class="btn" id="startPlannerBtn">Start Planning</a>
-    </div>
+    <h1>Welcome to Nona Plan</h1>
+    <p>Your Study & Exam Companion</p>
+    <a href="#" class="btn" id="startPlannerBtn">Start Planning</a>
 </section>
 
 <!-- FEATURES -->
@@ -91,37 +236,37 @@ nav .logo img {
         <h3>Study Planner</h3>
         <p>Organize your tasks and schedule efficiently.</p>
     </div>
+
     <div class="feature-card">
         <h3>Focus Timer</h3>
         <p>Use Pomodoro technique to stay productive.</p>
     </div>
+
     <div class="feature-card">
         <h3>Analytics</h3>
         <p>Track your progress and completed tasks.</p>
     </div>
+
     <div class="feature-card">
         <h3>Resources</h3>
         <p>Access notes and practice questions for all subjects.</p>
     </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
     <p>&copy; 2026 Nona Plan - Developed by Grade 12 Students</p>
 </footer>
 
 <script>
-// LOGOUT FUNCTION
-function logout() {
-    localStorage.removeItem("loggedIn");
-    window.location.href = "login.html";
+// MENU TOGGLE
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("show");
 }
 
-// LOGIN CHECK FOR BUTTON
+// LOGIN CHECK
 document.getElementById("startPlannerBtn").addEventListener("click", function() {
     const loggedIn = localStorage.getItem("loggedIn");
-
-    if(loggedIn){
+    if(loggedIn === "true"){
         window.location.href = "planner.html";
     } else {
         window.location.href = "login.html";
